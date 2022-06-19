@@ -1,6 +1,7 @@
 import graphene
 from graphene_django.types import DjangoObjectType
 from blog import models
+from blog import types
 
 #schema = graphene.Schema(query=queries.Query)
 
@@ -11,7 +12,7 @@ class Sitetype(DjangoObjectType):
 
 # The Query class
 class Query(graphene.ObjectType):
-    site = graphene.Field(types.Sitetype)
+    site = graphene.Field(types.SiteType)
 
     def resolve_site(root, info):
         return (
