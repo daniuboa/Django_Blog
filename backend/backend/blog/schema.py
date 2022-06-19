@@ -1,9 +1,9 @@
+from backend.backend.blog import queries
 import graphene
 from graphene_django.types import DjangoObjectType
 from blog import models
 from blog import types
-
-#schema = graphene.Schema(query=queries.Query)
+from django.contrib.auth import get_user_model
 
 # Define type
 class Sitetype(DjangoObjectType):
@@ -18,3 +18,5 @@ class Query(graphene.ObjectType):
         return (
             models.Site.objects.first()
         )
+
+schema = graphene.Schema(query=queries.Query)
