@@ -147,3 +147,30 @@ class Post(models.Model):
 
     def get_numer_of_likes(self):
         return self.likes.count()
+
+class Comment(models.Model):
+    content = models.TextField(max_length=1000)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_approved = models.BooleanField(default=False)
+
+    # Each comment can receive likes from multiple users, and each user can like multiple comments.
+    likes = models.ManyToManyField(User, related_name='comment_like')
+
+    # Each comment belong to one user and one post
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        verbose_name = 'comment'
+        verbose_name_plural = '6. Comments'
+
+    def __str__(self):
+        if len(self.content) > 50:
+            comment = self.content[:50] + '...'
+        else:
+            comment = self.content
+
+        return comment
+
+    def get_number_of_likes(self):
+        return self.likes.count()
