@@ -1,8 +1,20 @@
 from email.policy import default
+from unicodedata import category
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
-class AbstractUser(AbstractBaseUser, PermissionError):
+from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+from ckeditor.fields import RichTextField
+
+class AbstractUser(AbstractUser, PermissionError):
+    """
+    An abstract base class implementing a fully featured User model with
+    admin-compliant permissions.
+
+    Username and password are required. Other fields are optional.
+    """
     username_validator = UnicodeUsernameValidator()
 
     username = models.CharField(
@@ -62,7 +74,6 @@ class AbstractUser(AbstractBaseUser, PermissionError):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
-
 # Create your models here.
 class Site(models.Model):
     name = models.CharField(max_length=200)
