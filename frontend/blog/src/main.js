@@ -1,12 +1,9 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import "./main.css";
-import { apolloClient } from "@/apollo-config"
-createApp(App).use(route).use(apolloClient).mount('#app');
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
 
-const app = createApp(App);
+const app = createApp(App)
 
-app.use(router);
+app.use(router)
 
-app.mount("#app");
+app.mount('#app')

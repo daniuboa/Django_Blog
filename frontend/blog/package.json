@@ -7,9 +7,6 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.8",
-    "graphql": "^16.5.0",
-    "graphql-tag": "^2.12.6",
     "vue": "^3.2.36",
     "vue-router": "^4.0.15"
   },
