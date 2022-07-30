@@ -1,9 +1,16 @@
+from email.policy import default
+from unicodedata import category
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+
+from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
-class AbstractUser(AbstractBaseUser, PermissionsMixin):
+class AbstractUser(AbstractUser, PermissionError):
     """
     An abstract base class implementing a fully featured User model with
     admin-compliant permissions.
