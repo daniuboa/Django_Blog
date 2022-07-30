@@ -98,3 +98,15 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField()
+    description = models.TextField()
+
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = '3. Categories'
+
+    def __str__(self):
+        return self.name
