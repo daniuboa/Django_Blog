@@ -41,6 +41,9 @@ INSTALLED_APPS = [
 
     'blog',
     'graphene_django',
+    'ckeditor',
+    'ckeditor_uploader',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
