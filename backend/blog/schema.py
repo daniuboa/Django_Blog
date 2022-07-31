@@ -1,6 +1,6 @@
 import graphene
 from graphene_django import DjangoObjectType
-from blog import models
+from blog import models, queries
 
 # Define type
 class SiteType(DjangoObjectType):
@@ -15,3 +15,5 @@ class Query(graphene.ObjectType):
         return (
             models.Site.objects.first()
         )
+
+schema = graphene.Schema(query=queries.Query)
