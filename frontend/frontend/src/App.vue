@@ -1,85 +1,270 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div class="container mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+    <div class="flex flex-col justify-between h-screen">
+      <header class="flex flex-row items-center justify-between py-10">
+        <div class="nav-logo text-2xl font-bold">
+          <router-link to="/" v-if="this.mySite">{{
+            this.mySite.name
+          }}</router-link>
+        </div>
+        <div class="nav-links hidden sm:block">
+          <router-link
+            to="/"
+            class="
+              mx-2
+              font-sans font-medium
+              hover:underline hover:text-teal-700
+            "
+            >Home</router-link
+          >
+          <router-link
+            to="/categories"
+            class="
+              mx-2
+              font-sans font-medium
+              hover:underline hover:text-teal-700
+            "
+            >Category</router-link
+          >
+          <router-link
+            to="/tags"
+            class="
+              mx-2
+              font-sans font-medium
+              hover:underline hover:text-teal-700
+            "
+            >Tag</router-link
+          >
+          <router-link
+            v-if="!this.user.isAuthenticated"
+            to="/signin"
+            class="
+              mx-2
+              font-sans font-medium
+              hover:underline hover:text-teal-700
+            "
+            >Sign in</router-link
+          >
+          <router-link
+            v-if="this.user.isAuthenticated"
+            to="/profile"
+            class="
+              mx-2
+              font-sans font-medium
+              hover:underline hover:text-teal-700
+            "
+            >Profile</router-link
+          >
+          <a
+            v-if="this.user.isAuthenticated"
+            @click="userSignOut()"
+            class="
+              mx-2
+              font-sans font-medium
+              hover:underline hover:text-teal-700
+            "
+            >Sign Out</a
+          >
+        </div>
+        <div class="sm:hidden">
+          <button
+            type="button"
+            class="ml-1 mr-1 h-8 w-8 rounded py-1"
+            aria-label="Toggle Menu"
+            @click="this.menuOpen = !this.menuOpen"
+          >
+            <i v-if="this.menuOpen" class="fa-solid fa-xmark"></i>
+            <i v-else class="fa-solid fa-bars"></i>
+          </button>
+          <div
+            :class="{ 'translate-x-full': !this.menuOpen }"
+            class="
+              fixed
+              top-24
+              right-0
+              z-10
+              h-full
+              w-full
+              transform
+              bg-gray-200
+              opacity-95
+              duration-300
+              ease-in-out
+              dark:bg-gray-800
+            "
+          >
+            <nav
+              class="fixed mt-8 w-full h-full flex flex-col space-y-2"
+              @click="this.menuOpen = !this.menuOpen"
+            >
+              <router-link
+                to="/"
+                class="
+                  pl-4
+                  text-xl
+                  font-sans font-medium
+                  hover:underline hover:text-teal-700
+                "
+                >Home</router-link
+              >
+              <router-link
+                to="/categories"
+                class="
+                  pl-4
+                  text-xl
+                  font-sans font-medium
+                  hover:underline hover:text-teal-700
+                "
+                >Category</router-link
+              >
+              <router-link
+                to="/tags"
+                class="
+                  pl-4
+                  text-xl
+                  font-sans font-medium
+                  hover:underline hover:text-teal-700
+                "
+                >Tag</router-link
+              >
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+              <router-link
+                v-if="!this.user.isAuthenticated"
+                to="/signin"
+                class="
+                  pl-4
+                  text-xl
+                  font-sans font-medium
+                  hover:underline hover:text-teal-700
+                "
+                >Sign in</router-link
+              >
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+              <router-link
+                v-if="this.user.isAuthenticated"
+                to="/profile"
+                class="
+                  pl-4
+                  text-xl
+                  font-sans font-medium
+                  hover:underline hover:text-teal-700
+                "
+                >Profile</router-link
+              >
+
+              <a
+                v-if="this.user.isAuthenticated"
+                @click="userSignOut()"
+                class="
+                  pl-4
+                  text-xl
+                  font-sans font-medium
+                  hover:underline hover:text-teal-700
+                "
+                >Sign Out</a
+              >
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <router-view />
+
+      <footer class="flex flex-col place-items-center mt-5 py-5 border-t-2">
+        <div class="mb-3 flex space-x-4">
+          <i
+            class="
+              fa-brands fa-linkedin
+              text-3xl text-gray-700
+              hover:text-teal-700
+            "
+          ></i>
+          <i
+            class="
+              fa-brands fa-facebook-square
+              text-3xl text-gray-700
+              hover:text-teal-700
+            "
+          ></i>
+          <i
+            class="
+              fa-brands fa-twitter-square
+              text-3xl text-gray-700
+              hover:text-teal-700
+            "
+          ></i>
+          <i
+            class="
+              fa-brands fa-google-plus-square
+              text-3xl text-gray-700
+              hover:text-teal-700
+            "
+          ></i>
+          <i
+            class="
+              fa-brands fa-github-square
+              text-3xl text-gray-700
+              hover:text-teal-700
+            "
+          ></i>
+          <i
+            class="fa-brands fa-dev text-3xl text-gray-700 hover:text-teal-700"
+          ></i>
+        </div>
+        <div class="mb-3 flex space-x-1 text-sm text-gray-700">
+          <div>
+            <a
+              href="https://www.ericsdevblog.com"
+              class="hover:underline hover:text-teal-700"
+              >Eric Hu</a
+            >
+          </div>
+          <div>•</div>
+          <div>© 2022</div>
+          <div>•</div>
+          <a href="/" class="hover:underline hover:text-teal-700"
+            >Vue.js Starter Blog</a
+          >
+        </div>
+      </footer>
     </div>
-  </header>
-
-  <RouterView />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+<script>
+import { SITE_INFO } from "@/queries";
+import { useUserStore } from "@/stores/user";
+export default {
+  setup() {
+    const userStore = useUserStore();
+    return { userStore };
+  },
+  data() {
+    return {
+      menuOpen: false,
+      mySite: null,
+      user: {
+        isAuthenticated: false,
+        token: this.userStore.getToken || "",
+        info: this.userStore.getUser || {},
+      },
+      dataLoaded: false,
+    };
+  },
+  async created() {
+    const siteInfo = await this.$apollo.query({
+      query: SITE_INFO,
+    });
+    this.mySite = siteInfo.data.site;
+    if (this.user.token) {
+      this.user.isAuthenticated = true;
+    }
+  },
+  methods: {
+    userSignOut() {
+      this.userStore.removeToken();
+      this.userStore.removeUser();
+    },
+  },
+};
+</script>
