@@ -150,7 +150,7 @@ GRAPHENE = {
 # Cross origin resource sharing
 CORS_ORIGIN_ALLOW_ALL = False
 # Matches the port that Vue.js is using
-CORS_ORIGIN_WHITELIST = ("http://localhost:8080",)
+CORS_ORIGIN_WHITELIST = ("http://localhost:5173",)
 
 # JWT setting
 AUTHENTICATION_BACKENDS = [

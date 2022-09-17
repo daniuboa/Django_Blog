@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@popperjs/core": "^2.11.5",
     "graphql": "^16.5.0",
     "graphql-tag": "^2.12.6",
     "pinia": "^2.0.17",
