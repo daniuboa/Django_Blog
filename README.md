@@ -1,1 +1,1 @@
-This is the readme file for this project
+# Django Blog App
