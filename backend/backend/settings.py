@@ -132,3 +132,8 @@ MEDIA_URL = 'media/'
 
 # Change Default User Model
 AUTH_USER_MODEL = 'blog.User'
+
+# Configure GraphQL
+GRAPHENE = {
+    "SCHEMA": "blog.schema.schema"
+}
