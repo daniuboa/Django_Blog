@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     
     'blog',
     'graphene_django',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -137,3 +139,6 @@ AUTH_USER_MODEL = 'blog.User'
 GRAPHENE = {
     "SCHEMA": "blog.schema.schema"
 }
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = ("http://localhost:3000") # Matches the port that vue is running on
