@@ -21,6 +21,8 @@
   // @ is an alias to /src
   import PostList from "@/components/PostList.vue";
   import { POSTS_BY_CATEGORY } from "@/queries";
+
+  
   export default {
     components: { PostList },
     name: "CategoryView",
