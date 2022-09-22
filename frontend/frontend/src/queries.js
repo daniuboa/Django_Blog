@@ -1,6 +1,6 @@
-import gql from "graph-tag"
+import gql from "graphql-tag"
 
-export const SITE_INFO = GQL`
+export const SITE_INFO = gql`
   query {
     site {
         name

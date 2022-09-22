@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import PostView from '../views/PostView.vue'
-import CategoryView from '../views/CategoryView.vue'
-import TagView from '../views/TagView.vue'
-import AllCategoriesView from '../views/AllCategoriesView.vue'
-import AllTagsView from '../views/AllTagsView.vue'
+import HomeView from '@/views/HomeView.vue'
+import PostView from '@/views/PostView.vue'
+import CategoryView from '@/views/CategoryView.vue'
+import TagView from '@/views/TagView.vue'
+import AllCategoriesView from '@/views/AllCategoriesView.vue'
+import AllTagsView from '@/views/AllTagsView.vue'
 
 const routes = [
   {
