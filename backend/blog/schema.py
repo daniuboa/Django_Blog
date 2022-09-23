@@ -1,5 +1,5 @@
 import graphene
 from graphene_django import DjangoObjectType
-from blog import models, queries
+from blog import queries, mutations
 
-schema = graphene.Schema(query=queries.Query)
+schema = graphene.Schema(query=queries.Query, mutation=mutations.Mutation)
