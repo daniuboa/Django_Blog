@@ -12,4 +12,6 @@ app.use(router)
 
 app.use(apolloClient)
 
+app.use(createPinia())
+
 app.mount('#app')
