@@ -137,8 +137,18 @@ AUTH_USER_MODEL = 'blog.User'
 
 # Configure GraphQL
 GRAPHENE = {
-    "SCHEMA": "blog.schema.schema"
+    "SCHEMA": "blog.schema.schema",
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ]
 }
 
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ("http://127.0.0.1:5173/") # Matches the port that vue is running on
+CORS_ORIGIN_WHITELIST = ("http://127.0.0.1:5173",) # Matches the port that vue is running on
+
+# Auth Backends
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
