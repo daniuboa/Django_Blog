@@ -190,27 +190,3 @@ class Comment(models.Model):
     def get_number_of_likes(self):
         return self.likes.count()
     
-
-class CommentType(DjangoObjectType):
-    class Meta:
-        model = models.Comment
-        
-
-class CreateComment(graphene.Mutation):
-    comment  = graphene.Field(CommentType)
-    
-    class Arguments:
-        content = graphene.String(required=True)
-        user_id = graphene.ID(rewuired=True)
-        post_id = graphene.ID(required=True)
-        
-    def mutate(self, info, content, user_id, post_id):
-        comment = models.Comment(
-            content=content,
-            user_id=user_id,
-            post_id=post_id,
-        )
-        
-        comment.save()
-        
-        return CreateComment(comment=comment)
