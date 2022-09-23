@@ -103,6 +103,9 @@
   import CommentSectionComponent from "@/components/CommentSection.vue";
   import { UPDATE_POST_LIKE } from "@/mutations";
   import { createPopper } from "@popperjs/core";
+
+
+  
   export default {
     name: "PostView",
     components: { CommentSectionComponent },
